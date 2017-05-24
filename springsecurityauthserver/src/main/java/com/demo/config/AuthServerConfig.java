@@ -32,7 +32,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        super.configure(clients);
         clients.inMemory()
                 .withClient("clientpassword")
                 .secret("dummyclientsecret")
@@ -51,10 +50,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("implicit")
                 .scopes("read", "write")
                 .resourceIds(RESOURCE_ID)
-                .authorities("CLIENT")
-                .redirectUris("http://localhost:8081/resource-server/api/state/verify")
-                .accessTokenValiditySeconds(3600)
-                .autoApprove(true);
+                .authorities("ROLE_CLIENT");
     }
 
     @Override
