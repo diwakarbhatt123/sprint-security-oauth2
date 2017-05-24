@@ -48,8 +48,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .and()
                 .withClient("trustedClient")
                 .secret("trustedClientPassword")
+                .authorizedGrantTypes("implicit")
                 .scopes("read", "write")
-                .resourceIds(RESOURCE_ID);
+                .resourceIds(RESOURCE_ID)
+                .authorities("CLIENT")
+                .redirectUris("http://localhost:8081/resource-server/api/state/verify")
+                .accessTokenValiditySeconds(3600)
+                .autoApprove(true);
     }
 
     @Override

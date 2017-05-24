@@ -20,8 +20,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         RemoteTokenServices remoteTokenServices = new RemoteTokenServices();
-        remoteTokenServices.setClientId("clientpassword");
-        remoteTokenServices.setClientSecret("dummyclientsecret");
+        remoteTokenServices.setClientId("trustedClient");
+        remoteTokenServices.setClientSecret("trustedClientPassword");
         remoteTokenServices.setCheckTokenEndpointUrl("http://localhost:8080/oauth/check_token");
         resources.tokenServices(remoteTokenServices).resourceId(RESOURCE_ID);
     }
